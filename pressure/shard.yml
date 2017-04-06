@@ -1,0 +1,13 @@
+name: pressure
+version: 0.1.0
+
+authors:
+  - ne_Sachirou <utakata.c4se@gmail.com>
+
+targets:
+  pressure:
+    main: src/pressure.cr
+
+crystal: 0.21.1
+
+license: CC0-1.0

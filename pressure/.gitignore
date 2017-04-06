@@ -1,0 +1,16 @@
+pressure.log
+
+
+# Created by https://www.gitignore.io/api/crystal
+
+### Crystal ###
+/doc/
+/lib/
+/bin/
+/.shards/
+
+# Libraries don't need dependency lock
+# Dependencies will be locked in application that uses them
+#/shard.lock
+
+# End of https://www.gitignore.io/api/crystal
