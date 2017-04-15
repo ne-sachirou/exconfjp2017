@@ -16,6 +16,9 @@ module Pressure
       bot = start_bot bot_name
       Gravity.new.pressure timelimit: timelimit, concurrency: concurrency
       bot.kill rescue nil
+      until bot.terminated?
+        sleep 1
+      end
     end
 
     private def start_bot(bot : String)
