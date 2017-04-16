@@ -1,5 +1,3 @@
-require "http/client"
-
 module Pressure
   class Gravity
     @w_lines : Int64
@@ -15,79 +13,67 @@ module Pressure
     end
 
     def pressure(timelimit : Int32, concurrency : Int32)
-      connections = concurrency.times.map { connect }.to_a
       ch = Channel(Nil).new
-      pressure? = true
-      show_stats
-      spawn do
-        sleep timelimit
-        ch.send nil
+      Timeout.new(timelimit).tap do |t|
+        t.register ch
+        t.register show_stats
+        t.register ping concurrency
+        t.start
       end
+      ch.receive
+      sleep 1.1
+      self
+    end
+
+    private def show_stats
+      ch = Channel(Nil).new
       spawn do
         loop do
-          break unless pressure?
-          until connections.empty?
-            break unless pressure?
-            client = connections.pop
-            spawn do
-              client = ping client
-              connections.push client
+          puts "r:#{@r_lines}\tw:#{@w_lines}\te:#{@e_lines}\tt:#{(@res_time * 1000).to_i / 1000.0}ms"
+          select
+          when ch.receive then break
+          when Timeout.sleep(0.1).receive
+          end
+          print "\033[1A\033[1G\033[0K"
+        end
+        sleep 1
+        puts "\033[1A\033[1G\033[0Kr:#{@r_lines}\tw:#{@w_lines}\te:#{@e_lines}\tt:#{(@res_time * 1000).to_i / 1000.0}ms"
+      end
+      ch
+    end
+
+    private def ping(concurrency)
+      ch = Channel(Nil).new
+      is_timeout = false
+      spawn do
+        ch.receive
+        is_timeout = true
+      end
+      spawn do
+        pinger = Pinger.new concurrency
+        loop do
+          break if is_timeout
+          while pinger.pingable?
+            break if is_timeout
+            pinger.ping.tap do |ch_stat|
+              spawn do
+                stat = ch_stat.receive
+                @w_lines += 1
+                if stat.success?
+                  @r_lines += 1
+                  @res_time = (@res_time * (@r_lines - 1) + stat.time) / @r_lines
+                else
+                  @e_lines += 1
+                end
+              end
             end
           end
           sleep 0.001
         end
+        sleep 1
+        pinger.close
       end
-      ch.receive
-      pressure? = false
-      sleep 0.2
-    end
-
-    private def show_stats
-      spawn do
-        loop do
-          puts "r:#{@r_lines}\tw:#{@w_lines}\te:#{@e_lines}\tt:#{(@res_time * 100).to_i / 100.0}ms"
-          sleep 0.1
-          print "\033[1A\033[1G\033[0K"
-        end
-      end
-    end
-
-    private def connect
-      HTTP::Client.new("localhost", 3000).tap do |c|
-        c.connect_timeout = 1.second
-        c.dns_timeout = 1.second
-        c.read_timeout = 1.second
-      end
-    end
-
-    private def ping(client, retrying? = false)
-      @w_lines += 1
-      t1 = Time.now
-      begin
-        res = client.post "/", body: "ping"
-        t2 = Time.now
-        if res.success? && res.body == "pong"
-          @r_lines += 1
-          @res_time = (@res_time * (@r_lines - 1) + (t2 - t1).seconds * 1000 + (t2 - t1).milliseconds) / @r_lines
-        else
-          @e_lines += 1
-          Logger.new.error res
-          client.close rescue nil
-          client = connect
-        end
-      rescue err
-        client.close rescue nil
-        sleep 0.001
-        client = connect
-        unless retrying?
-          @w_lines -= 1
-          client = ping client, true
-        else
-          @e_lines += 1
-          Logger.new.error err
-        end
-      end
-      client
+      ch
     end
   end
 end

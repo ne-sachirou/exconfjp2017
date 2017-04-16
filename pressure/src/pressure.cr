@@ -15,18 +15,15 @@ module Pressure
       end
       bot = start_bot bot_name
       Gravity.new.pressure timelimit: timelimit, concurrency: concurrency
-      bot.kill rescue nil
-      until bot.terminated?
-        sleep 1
-      end
+      terminate_bot bot
     end
 
-    private def start_bot(bot : String)
+    private def start_bot(bot_name)
       bot = Process.new "make", %w(start),
-                        chdir: File.join("..", bot),
+                        chdir: File.join("..", bot_name),
                         output: Logger.new,
                         error: Logger.new
-      print "Waiting"
+      print "Starting"
       loop do
         begin
           print "."
@@ -36,8 +33,20 @@ module Pressure
         end
         sleep 1
       end
+      sleep 1
       print "\033[1G\033[0K"
       bot
+    end
+
+    private def terminate_bot(bot)
+      bot.kill rescue nil
+      print "Terminating"
+      while !bot.terminated? || system "lsof -n -i TCP:3000 | grep TCP | grep -v -E 'CLOSE_WAIT|CLOSED' &>/dev/null"
+        print "."
+        sleep 1
+      end
+      sleep 1
+      print "\033[1G\033[0K"
     end
   end
 end

@@ -25,3 +25,4 @@ pressure: bin/pressure ## Benchmark
 test: ## Test
 	find bin src spec -name '*.cr' -exec crystal tool format --check {} \;
 	crystal spec
+	shellcheck -s bash pressure.sh
