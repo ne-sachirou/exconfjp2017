@@ -1,0 +1,87 @@
+crystal deps --production
+crystal build --release -o bin/pressure bin/pressure.cr
+./pressure.sh
+bin/pressure botkit -t 1 -c 1000
+r:2112	w:2112	e:0	t:295.998ms
+bin/pressure hedwig -t 1 -c 1000
+r:6781	w:6781	e:0	t:191.461ms
+
+node -v
+v7.9.0
+elixir -v
+Erlang/OTP 19 [erts-8.3] [source] [64-bit] [smp:4:4] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
+
+Elixir 1.4.2
+
+bin/pressure botkit -t 1 -c 1
+r:760	w:760	e:0	t:0.101ms
+bin/pressure hedwig -t 1 -c 1
+r:777	w:777	e:0	t:0.048ms
+bin/pressure botkit -t 1 -c 10
+r:7558	w:7558	e:0	t:0.265ms
+bin/pressure hedwig -t 1 -c 10
+r:7395	w:7395	e:0	t:0.207ms
+bin/pressure botkit -t 1 -c 50
+r:7217	w:7217	e:0	t:5.679ms
+bin/pressure hedwig -t 1 -c 50
+r:15210	w:15210	e:0	t:1.917ms
+bin/pressure botkit -t 1 -c 100
+r:8786	w:8786	e:0	t:9.994ms
+bin/pressure hedwig -t 1 -c 100
+r:12756	w:12756	e:0	t:5.347ms
+bin/pressure botkit -t 1 -c 500
+r:6901	w:6901	e:0	t:59.942ms
+bin/pressure hedwig -t 1 -c 500
+r:10176	w:10176	e:0	t:40.913ms
+bin/pressure botkit -t 1 -c 1000
+r:3863	w:3863	e:0	t:187.88ms
+bin/pressure hedwig -t 1 -c 1000
+r:8375	w:8375	e:0	t:124.058ms
+bin/pressure botkit -t 15 -c 1
+r:11924	w:11924	e:0	t:0.008ms
+bin/pressure hedwig -t 15 -c 1
+r:11765	w:11765	e:0	t:0.018ms
+bin/pressure botkit -t 15 -c 10
+r:130217	w:130217	e:0	t:0.083ms
+bin/pressure hedwig -t 15 -c 10
+r:119400	w:119400	e:0	t:0.133ms
+bin/pressure botkit -t 15 -c 50
+r:168055	w:168055	e:0	t:3.404ms
+bin/pressure hedwig -t 15 -c 50
+r:190650	w:190650	e:0	t:2.613ms
+bin/pressure botkit -t 15 -c 100
+r:166442	w:166442	e:0	t:7.902ms
+bin/pressure hedwig -t 15 -c 100
+r:190045	w:190045	e:0	t:5.579ms
+bin/pressure botkit -t 15 -c 500
+r:154815	w:154815	e:0	t:45.781ms
+bin/pressure hedwig -t 15 -c 500
+r:140170	w:140200	e:30	t:38.593ms
+bin/pressure botkit -t 15 -c 1000
+r:158400	w:158400	e:0	t:91.82ms
+bin/pressure hedwig -t 15 -c 1000
+r:173543	w:173543	e:0	t:78.144ms
+bin/pressure botkit -t 30 -c 1
+r:23980	w:23980	e:0	t:0.005ms
+bin/pressure hedwig -t 30 -c 1
+r:23059	w:23059	e:0	t:0.047ms
+bin/pressure botkit -t 30 -c 10
+r:257418	w:257418	e:0	t:0.099ms
+bin/pressure hedwig -t 30 -c 10
+r:198104	w:198119	e:15	t:0.153ms
+bin/pressure botkit -t 30 -c 50
+r:336393	w:336393	e:0	t:3.397ms
+bin/pressure hedwig -t 30 -c 50
+r:331867	w:331897	e:30	t:2.638ms
+bin/pressure botkit -t 30 -c 100
+r:349794	w:349794	e:0	t:7.51ms
+bin/pressure hedwig -t 30 -c 100
+r:378507	w:378507	e:0	t:5.958ms
+bin/pressure botkit -t 30 -c 500
+r:326668	w:326668	e:0	t:44.32ms
+bin/pressure hedwig -t 30 -c 500
+r:333402	w:333459	e:57	t:36.017ms
+bin/pressure botkit -t 30 -c 1000
+r:313695	w:313695	e:0	t:93.28ms
+bin/pressure hedwig -t 30 -c 1000
+r:331792	w:331802	e:10	t:80.975ms
