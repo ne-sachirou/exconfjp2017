@@ -14,8 +14,12 @@ module Pressure
       nil
     end
 
-    def error(message : Object)
-      @@logger.error message.to_s
+    def error(message : String)
+      @@logger.error message
+    end
+
+    def error(message)
+      @@logger.error message.inspect
     end
   end
 end

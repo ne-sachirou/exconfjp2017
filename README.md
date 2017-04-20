@@ -1,18 +1,5 @@
-Compare Botkit (Node.js) & Hedwig (Elixir).
+Compare Ping-Pong
 ==
-Build bots.
-
-```sh
-cd botkit
-make
-```
-
-```sh
-cd hedwig
-make
-```
-
-Make pressure.
 
 ```sh
 cd pressure

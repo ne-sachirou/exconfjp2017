@@ -1,0 +1,11 @@
+{
+  "name": "ping_pong",
+  "version": "1.0.0",
+  "description": "ping-pong",
+  "main": "index.js",
+  "author": "ne_Sachirou <utakata.c4se@gmail.com>",
+  "license": "WTFPL",
+  "dependencies": {
+    "coffee-script": "^1.12.5"
+  }
+}

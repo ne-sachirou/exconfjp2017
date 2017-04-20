@@ -1,0 +1,13 @@
+name: ping_pong
+version: 0.1.0
+
+authors:
+  - ne_Sachirou <utakata.c4se@gmail.com>
+
+targets:
+  ping_pong:
+    main: src/ping_pong.cr
+
+crystal: 0.21.1
+
+license: WTFPL

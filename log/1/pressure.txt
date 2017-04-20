@@ -1,87 +1,48 @@
-crystal deps --production
-crystal build --release -o bin/pressure bin/pressure.cr
-./pressure.sh
-bin/pressure botkit -t 1 -c 1000
-r:5529	w:5529	e:0	t:145.186ms
-bin/pressure hedwig -t 1 -c 1000
-r:6913	w:6913	e:0	t:148.694ms
-
-node -v
-v7.9.0
-elixir -v
-Erlang/OTP 19 [erts-8.3] [source] [64-bit] [smp:4:4] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
-
-Elixir 1.4.2
-
-bin/pressure botkit -t 1 -c 1
-r:776	w:776	e:0	t:0.07ms
-bin/pressure hedwig -t 1 -c 1
-r:792	w:792	e:0	t:0.012ms
-bin/pressure botkit -t 1 -c 10
-r:7820	w:7820	e:0	t:0.217ms
-bin/pressure hedwig -t 1 -c 10
-r:8083	w:8083	e:0	t:0.101ms
-bin/pressure botkit -t 1 -c 50
-r:9256	w:9256	e:0	t:4.288ms
-bin/pressure hedwig -t 1 -c 50
-r:14986	w:14986	e:0	t:1.98ms
-bin/pressure botkit -t 1 -c 100
-r:8952	w:8952	e:0	t:9.808ms
-bin/pressure hedwig -t 1 -c 100
-r:13562	w:13562	e:0	t:5.192ms
-bin/pressure botkit -t 1 -c 500
-r:6656	w:6656	e:0	t:63.449ms
-bin/pressure hedwig -t 1 -c 500
-r:10778	w:10778	e:0	t:45.23ms
-bin/pressure botkit -t 1 -c 1000
-r:1810	w:1810	e:0	t:320.241ms
-bin/pressure hedwig -t 1 -c 1000
-r:6815	w:6815	e:0	t:202.138ms
-bin/pressure botkit -t 15 -c 1
-r:11918	w:11918	e:0	t:0.009ms
-bin/pressure hedwig -t 15 -c 1
-r:11721	w:11721	e:0	t:0.022ms
-bin/pressure botkit -t 15 -c 10
-r:129816	w:129816	e:0	t:0.086ms
-bin/pressure hedwig -t 15 -c 10
-r:115029	w:115029	e:0	t:0.154ms
-bin/pressure botkit -t 15 -c 50
-r:170080	w:170080	e:0	t:3.348ms
-bin/pressure hedwig -t 15 -c 50
-r:190997	w:190997	e:0	t:2.567ms
-bin/pressure botkit -t 15 -c 100
-r:166118	w:166118	e:0	t:7.903ms
-bin/pressure hedwig -t 15 -c 100
-r:178592	w:178592	e:0	t:5.618ms
-bin/pressure botkit -t 15 -c 500
-r:163262	w:163262	e:0	t:44.455ms
-bin/pressure hedwig -t 15 -c 500
-r:181481	w:181481	e:0	t:34.691ms
-bin/pressure botkit -t 15 -c 1000
-r:8822	w:22746	e:13924	t:83.648ms
-bin/pressure hedwig -t 15 -c 1000
-r:135156	w:135206	e:50	t:92.531ms
-bin/pressure botkit -t 30 -c 1
-r:21677	w:21677	e:0	t:0.024ms
-bin/pressure hedwig -t 30 -c 1
-r:21513	w:21513	e:0	t:0.051ms
-bin/pressure botkit -t 30 -c 10
-r:218248	w:218248	e:0	t:0.29ms
-bin/pressure hedwig -t 30 -c 10
-r:195060	w:195060	e:0	t:0.352ms
-bin/pressure botkit -t 30 -c 50
-r:287955	w:287955	e:0	t:4.158ms
-bin/pressure hedwig -t 30 -c 50
-r:362055	w:362055	e:0	t:2.756ms
-bin/pressure botkit -t 30 -c 100
-r:308443	w:308443	e:0	t:8.648ms
-bin/pressure hedwig -t 30 -c 100
-r:362620	w:362645	e:25	t:5.671ms
-bin/pressure botkit -t 30 -c 500
-r:308016	w:308016	e:0	t:46.885ms
-bin/pressure hedwig -t 30 -c 500
-r:298709	w:298709	e:0	t:36.301ms
-bin/pressure botkit -t 30 -c 1000
-r:320299	w:320299	e:0	t:91.25ms
-bin/pressure hedwig -t 30 -c 1000
-r:328230	w:328230	e:0	t:82.584ms
+bin/pressure coffeescript_nodejs -t 15 -c 5
+r:62110	w:62110	e:0	t:0.007ms
+bin/pressure coffeescript_nodejs -t 15 -c 50
+r:220134	w:220134	e:0	t:2.337ms
+bin/pressure coffeescript_nodejs -t 15 -c 500
+r:78590	w:79590	e:1000	t:30.978ms
+bin/pressure crystal_crystal -t 15 -c 5
+r:59221	w:59221	e:0	t:0.0ms
+bin/pressure crystal_crystal -t 15 -c 50
+r:627692	w:627692	e:0	t:0.055ms
+bin/pressure crystal_crystal -t 15 -c 500
+r:627030	w:627030	e:0	t:7.893ms
+bin/pressure elixir_cowboy -t 15 -c 5
+r:60595	w:60595	e:0	t:0.022ms
+bin/pressure elixir_cowboy -t 15 -c 50
+r:202176	w:202176	e:0	t:2.508ms
+bin/pressure elixir_cowboy -t 15 -c 500
+r:211333	w:211333	e:0	t:26.145ms
+bin/pressure groovy_vertx -t 15 -c 5
+r:59896	w:59896	e:0	t:0.013ms
+bin/pressure groovy_vertx -t 15 -c 50
+r:598866	w:598866	e:0	t:0.146ms
+bin/pressure groovy_vertx -t 15 -c 500
+r:571604	w:571604	e:0	t:9.256ms
+bin/pressure jruby_vertx -t 15 -c 5
+r:59294	w:59294	e:0	t:0.05ms
+bin/pressure jruby_vertx -t 15 -c 50
+r:384061	w:384061	e:0	t:0.884ms
+bin/pressure jruby_vertx -t 15 -c 500
+r:339131	w:339131	e:0	t:19.829ms
+bin/pressure opal_nodejs -t 15 -c 5
+r:62825	w:62825	e:0	t:0.013ms
+bin/pressure opal_nodejs -t 15 -c 50
+r:167892	w:167892	e:0	t:3.41ms
+bin/pressure opal_nodejs -t 15 -c 500
+r:159234	w:159234	e:0	t:44.864ms
+bin/pressure ruby_puma -t 15 -c 5
+r:60117	w:60117	e:0	t:0.028ms
+bin/pressure ruby_puma -t 15 -c 50
+r:267000	w:267000	e:0	t:1.394ms
+bin/pressure ruby_puma -t 15 -c 500
+r:212091	w:212091	e:0	t:21.388ms
+bin/pressure ruby_unicorn -t 15 -c 5
+r:1066	w:1071	e:5	t:25.852ms
+bin/pressure ruby_unicorn -t 15 -c 50
+r:1678	w:1746	e:68	t:137.0ms
+bin/pressure ruby_unicorn -t 15 -c 500
+r:6228	w:12763	e:6535	t:889.9ms

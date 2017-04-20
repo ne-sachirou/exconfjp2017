@@ -1,8 +1,0 @@
-extends: standard
-parser: babel-eslint
-plugins:
-  - flowtype
-  - standard
-  - promise
-rules:
-  max-len: ['error', 160]

@@ -6,7 +6,7 @@ module Pressure
   class App
     def initialize(argv : Array(String))
       bot_name = argv[0]?
-      raise "Unknown bot #{bot_name}" unless bot_name && %w(botkit hedwig).includes?(bot_name)
+      raise "Unknown bot #{bot_name}" unless bot_name && Dir.exists?(File.join("..", bot_name))
       timelimit = 60
       concurrency = 100
       OptionParser.parse(argv) do |parser|
