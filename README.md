@@ -1,5 +1,6 @@
 Compare Ping-Pong
 ==
+[大勢でピンポンできるのは、だれ? // Speaker Deck](https://speakerdeck.com/ne_sachirou/da-shi-tehinhontekirufalseha-tare)
 
 ```sh
 cd pressure
