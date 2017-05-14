@@ -1,5 +1,7 @@
 Compare Botkit (Node.js) & Hedwig (Elixir).
 ==
+[ElixirでNode.jsを倒す // Speaker Deck](https://speakerdeck.com/ne_sachirou/elixirdenode-dot-jswodao-su)
+
 Build bots.
 
 ```sh
